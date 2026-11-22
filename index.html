@@ -1,0 +1,716 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wycena z aktów – ile jest warte Twoje mieszkanie</title>
+<meta name="description" content="Bezpłatna wycena mieszkania na podstawie prawdziwych cen z aktów notarialnych w okolicy (Rejestr Cen Nieruchomości), a nie cen z ogłoszeń. Bez logowania.">
+<meta name="theme-color" content="#3d35a0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f131b" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/svg+xml" href="ikony/ikona.svg">
+<link rel="icon" type="image/png" sizes="192x192" href="ikony/ikona-192.png">
+<link rel="apple-touch-icon" href="ikony/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Wycena z aktów">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pl_PL">
+<meta property="og:title" content="Ile jest warte Twoje mieszkanie?">
+<meta property="og:description" content="Wycena z prawdziwych cen z aktów notarialnych w okolicy, nie z ogłoszeń. Za darmo, bez logowania.">
+<meta property="og:url" content="https://yngzty4229-art.github.io/wycena-mieszkania/">
+<meta property="og:image" content="https://yngzty4229-art.github.io/wycena-mieszkania/ikony/podglad.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://yngzty4229-art.github.io/wycena-mieszkania/">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "WebApplication", "name": "Wycena z aktów", "inLanguage": "pl",
+ "url": "https://yngzty4229-art.github.io/wycena-mieszkania/", "applicationCategory": "FinanceApplication", "operatingSystem": "Any",
+ "description": "Bezpłatna wycena mieszkania w Polsce na podstawie prawdziwych cen z aktów notarialnych w okolicy (Rejestr Cen Nieruchomości).",
+ "offers": {"@type": "Offer", "price": "0", "priceCurrency": "PLN"}}
+</script>
+<link rel="preload" href="czcionki/public-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="czcionki/spectral-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+  @font-face { font-family: "Spectral"; font-style: normal; font-weight: 600; font-display: swap;
+    src: url(czcionki/spectral-latin-ext-600-normal.woff2) format("woff2");
+    unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+  @font-face { font-family: "Spectral"; font-style: normal; font-weight: 600; font-display: swap;
+    src: url(czcionki/spectral-latin-600-normal.woff2) format("woff2");
+    unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+  @font-face { font-family: "Public Sans"; font-style: normal; font-weight: 100 900; font-display: swap;
+    src: url(czcionki/public-sans-latin-ext-wght-normal.woff2) format("woff2-variations"), url(czcionki/public-sans-latin-ext-wght-normal.woff2) format("woff2");
+    unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+  @font-face { font-family: "Public Sans"; font-style: normal; font-weight: 100 900; font-display: swap;
+    src: url(czcionki/public-sans-latin-wght-normal.woff2) format("woff2-variations"), url(czcionki/public-sans-latin-wght-normal.woff2) format("woff2");
+    unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+
+  :root {
+    --papier: #f5f6f8; --karta: #ffffff; --tusz: #1d2331; --szary: #5e6677; --linia: #d9dee7; --siatka: #e8ebf1;
+    --pieczec: #3d35a0; --pieczec-tlo: #ecebfa; --na-pieczeci: #ffffff;
+    --tanio: #1c7c74; --drogo: #9a5a0b; --blad: #b42318; --blad-tlo: #fdf0ef;
+    --cien: 0 1px 2px rgba(29, 35, 49, .05), 0 8px 28px rgba(29, 35, 49, .07);
+    --szeryf: "Spectral", Georgia, "Times New Roman", serif;
+    --bezszeryf: "Public Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --papier: #0f131b; --karta: #171c27; --tusz: #e7ebf3; --szary: #9aa3b5; --linia: #2a3242; --siatka: #1f2633;
+      --pieczec: #a39cf4; --pieczec-tlo: #24224a; --na-pieczeci: #12111f;
+      --tanio: #4fb8ae; --drogo: #e2a04b; --blad: #ff8a80; --blad-tlo: #2c1717;
+      --cien: none; color-scheme: dark;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--papier); color: var(--tusz); font: 16px/1.55 var(--bezszeryf);
+    padding-block: env(safe-area-inset-top, 0px) env(safe-area-inset-bottom, 0px);
+  }
+  .kolumna { max-width: 620px; margin: 0 auto; padding-inline: max(16px, env(safe-area-inset-left, 0px)); }
+  a { color: var(--pieczec); }
+  :focus-visible { outline: 3px solid var(--pieczec); outline-offset: 2px; border-radius: 6px; }
+
+  header.gora { display: flex; align-items: center; gap: 10px; padding-block: 18px 4px; }
+  header.gora .nazwa { font-family: var(--szeryf); font-weight: 600; font-size: 1.2rem; }
+  header.gora svg { flex: none; }
+
+  .wstep h1 { font-family: var(--szeryf); font-weight: 600; font-size: 2rem; line-height: 1.15; margin: 18px 0 10px; text-wrap: balance; }
+  .wstep p { margin: 0 0 8px; color: var(--szary); max-width: 34em; }
+  .wstep .baza { font-size: .9rem; margin-bottom: 20px; min-height: 1.4em; font-variant-numeric: tabular-nums; }
+
+  form.karta, section.karta { background: var(--karta); border: 1px solid var(--linia); border-radius: 16px; box-shadow: var(--cien); }
+  form.karta { padding: 20px 18px 18px; display: grid; gap: 18px; }
+  .pole { display: grid; gap: 6px; min-width: 0; }
+  .pole > label { font-weight: 600; font-size: .95rem; }
+  .podpowiedz { color: var(--szary); font-size: .85rem; }
+  input[type=text], select {
+    width: 100%; font: inherit; color: inherit; background: var(--papier); border: 1px solid var(--linia);
+    border-radius: 10px; padding: 11px 12px; min-height: 48px;
+  }
+  select { appearance: none; -webkit-appearance: none; padding-right: 36px;
+    background-image: linear-gradient(45deg, transparent 50%, var(--szary) 50%), linear-gradient(135deg, var(--szary) 50%, transparent 50%);
+    background-position: calc(100% - 20px) 21px, calc(100% - 15px) 21px; background-size: 5px 5px; background-repeat: no-repeat; }
+  input:focus, select:focus { border-color: var(--pieczec); outline: none; box-shadow: 0 0 0 3px var(--pieczec-tlo); }
+  input[aria-invalid=true] { border-color: var(--blad); }
+  .dwa { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .z-jednostka { position: relative; }
+  .z-jednostka input { padding-right: 46px; }
+  .z-jednostka span { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--szary); pointer-events: none; }
+  fieldset.wybor { border: 0; margin: 0; padding: 0; min-width: 0; }
+  .wybor legend { font-weight: 600; font-size: .95rem; padding: 0; margin-bottom: 8px; }
+  .wybor .opcje { display: flex; flex-wrap: wrap; gap: 8px; }
+  .wybor label { position: relative; }
+  .wybor input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+  .wybor span {
+    display: inline-flex; align-items: center; justify-content: center; min-width: 48px; min-height: 44px; padding: 8px 14px;
+    border: 1px solid var(--linia); border-radius: 999px; background: var(--papier); font-weight: 500;
+  }
+  .wybor input:checked + span { background: var(--pieczec); border-color: var(--pieczec); color: var(--na-pieczeci); }
+  .wybor input:focus-visible + span { outline: 3px solid var(--pieczec); outline-offset: 2px; }
+  button.glowny {
+    font: inherit; font-weight: 600; font-size: 1.05rem; color: var(--na-pieczeci); background: var(--pieczec); border: 0;
+    border-radius: 12px; min-height: 52px; padding: 12px 18px; cursor: pointer;
+  }
+  button.glowny:disabled { opacity: .65; cursor: progress; }
+  button.drugi {
+    font: inherit; font-weight: 600; color: var(--pieczec); background: transparent; border: 1px solid var(--linia);
+    border-radius: 12px; min-height: 48px; padding: 10px 16px; cursor: pointer;
+  }
+  .prywatnosc { font-size: .82rem; color: var(--szary); margin: 0; }
+  #status { min-height: 1.5em; margin: 14px 2px 0; color: var(--szary); font-size: .95rem; overflow-wrap: anywhere; }
+  #status.blad { color: var(--blad); background: var(--blad-tlo); padding: 12px 14px; border-radius: 10px; }
+
+  /* wynik */
+  #wynik { margin-top: 22px; padding: 22px 18px 24px; }
+  #wynik:focus { outline: none; }
+  .adres-wyniku { color: var(--szary); font-size: .92rem; margin: 0 0 16px; }
+  .podpis-wartosci { font-weight: 600; margin: 0; }
+  .wartosc { font-family: var(--szeryf); font-weight: 600; font-size: clamp(2.5rem, 12vw, 3.4rem); line-height: 1.05; margin: 4px 0 8px;
+             font-variant-numeric: lining-nums tabular-nums; letter-spacing: -.01em; }
+  .przedzial-tekst { margin: 0; }
+  .skala { margin: 14px 0 4px; }
+  .skala svg, .mapa svg, .trend svg { display: block; max-width: 100%; }
+  .opis { color: var(--szary); font-size: .9rem; margin: 0 0 12px; }
+  .ostrzezenie { margin: 6px 0 0; padding: 10px 12px; border-radius: 10px; background: var(--blad-tlo); color: var(--blad); font-size: .92rem; }
+  dl.fakty { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 16px; margin: 18px 0 0; }
+  dl.fakty div { border-top: 1px solid var(--linia); padding-top: 10px; min-width: 0; }
+  dl.fakty dt { color: var(--szary); font-size: .85rem; }
+  dl.fakty dd { margin: 2px 0 0; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .pewnosc-high { color: var(--tanio); } .pewnosc-medium { color: var(--drogo); } .pewnosc-low { color: var(--blad); }
+  #wynik h2 { font-family: var(--szeryf); font-weight: 600; font-size: 1.35rem; line-height: 1.25; margin: 34px 0 6px; text-wrap: balance; }
+  .mapa svg { border: 1px solid var(--linia); border-radius: 12px; background: var(--karta); }
+  .legenda { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .85rem; color: var(--szary); margin-top: 10px; }
+  .legenda i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; }
+  ol.porownania { list-style: none; padding: 0; margin: 0; }
+  ol.porownania li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 14px; padding: 12px 0; border-top: 1px solid var(--linia); }
+  ol.porownania .gdzie, ol.porownania .cena { font-weight: 600; }
+  ol.porownania .cena, ol.porownania .prawa { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  ol.porownania .lewa, ol.porownania .prawa { color: var(--szary); font-size: .88rem; font-variant-numeric: tabular-nums; }
+  ul.uwagi { padding-left: 20px; margin: 22px 0 0; color: var(--szary); font-size: .92rem; display: grid; gap: 6px; }
+  details { margin-top: 24px; border-top: 1px solid var(--linia); padding-top: 12px; }
+  summary { cursor: pointer; font-weight: 600; min-height: 32px; }
+  details p { color: var(--szary); font-size: .92rem; max-width: 38em; }
+  .zastrzezenie { font-size: .85rem; color: var(--szary); margin: 18px 0 0; }
+  .akcje { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+
+  footer { padding-block: 30px 44px; color: var(--szary); font-size: .85rem; }
+  footer p { margin: 0 0 8px; max-width: 40em; }
+  .instalacja { margin: 22px 0 0; padding: 14px 16px; border: 1px dashed var(--linia); border-radius: 12px; font-size: .92rem; color: var(--tusz); }
+  .instalacja button { margin-top: 10px; }
+  @media (min-width: 720px) {
+    .wstep h1 { font-size: 2.6rem; }
+    form.karta { padding: 26px 26px 22px; }
+    #wynik { padding: 28px 26px 28px; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    #wynik.pokaz { animation: pojaw .35s ease-out; }
+    @keyframes pojaw { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<div class="kolumna">
+  <header class="gora">
+    <svg width="34" height="34" viewBox="0 0 64 64" aria-hidden="true">
+      <circle cx="32" cy="32" r="29.5" fill="none" stroke="var(--pieczec)" stroke-width="3" stroke-dasharray="4 3"/>
+      <circle cx="32" cy="32" r="23.5" fill="var(--pieczec)"/>
+      <path d="M20.5 33 L32 22.5 L43.5 33 M24.5 30 V42.5 H39.5 V30" fill="none" stroke="var(--karta)" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+    </svg>
+    <span class="nazwa">Wycena z aktów</span>
+  </header>
+
+  <main>
+    <section class="wstep">
+      <h1>Ile jest warte Twoje mieszkanie?</h1>
+      <p>Liczymy z prawdziwych cen z aktów notarialnych w Twojej okolicy, a nie z cen w ogłoszeniach. Za darmo i bez zakładania konta.</p>
+      <p class="baza" id="baza"></p>
+    </section>
+
+    <form class="karta" id="formularz" novalidate>
+      <div class="pole">
+        <label for="miasto">Miejscowość</label>
+        <input id="miasto" name="miasto" type="text" autocomplete="address-level2" placeholder="np. Kraków" enterkeyhint="next">
+      </div>
+      <div class="pole">
+        <label for="ulica">Ulica i numer budynku</label>
+        <input id="ulica" name="ulica" type="text" autocomplete="address-line1" placeholder="np. Długa 12" enterkeyhint="next">
+        <span class="podpowiedz">Bez numeru mieszkania. Sama miejscowość też wystarczy, ale wtedy wycena jest mniej dokładna.</span>
+      </div>
+      <div class="dwa">
+        <div class="pole">
+          <label for="metraz">Powierzchnia</label>
+          <div class="z-jednostka"><input id="metraz" name="metraz" type="text" inputmode="decimal" placeholder="np. 54" autocomplete="off"><span>m²</span></div>
+        </div>
+        <div class="pole">
+          <label for="pietro">Piętro</label>
+          <select id="pietro" name="pietro">
+            <option value="">nie podam</option>
+            <option value="0">parter</option>
+            <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option>
+            <option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option>
+            <option value="9">9</option><option value="10">10</option><option value="12">11–14</option><option value="15">15 i wyżej</option>
+          </select>
+        </div>
+      </div>
+      <fieldset class="wybor">
+        <legend>Liczba pokoi</legend>
+        <div class="opcje">
+          <label><input type="radio" name="pokoje" value="1"><span>1</span></label>
+          <label><input type="radio" name="pokoje" value="2" checked><span>2</span></label>
+          <label><input type="radio" name="pokoje" value="3"><span>3</span></label>
+          <label><input type="radio" name="pokoje" value="4"><span>4</span></label>
+          <label><input type="radio" name="pokoje" value="5" aria-label="5 i więcej"><span>5+</span></label>
+        </div>
+      </fieldset>
+      <fieldset class="wybor">
+        <legend>Mieszkanie jest</legend>
+        <div class="opcje">
+          <label><input type="radio" name="rynek" value="secondary" checked><span>używane</span></label>
+          <label><input type="radio" name="rynek" value="primary"><span>nowe, od dewelopera</span></label>
+          <label><input type="radio" name="rynek" value="any"><span>nie wiem</span></label>
+        </div>
+      </fieldset>
+      <button class="glowny" type="submit" id="przycisk">Wyceń mieszkanie</button>
+      <p class="prywatnosc">Adres sprawdzamy w urzędowej wyszukiwarce adresów GUGiK. Niczego nie zapisujemy na serwerze – wycena liczy się w Twoim telefonie.</p>
+    </form>
+
+    <div id="status" role="status" aria-live="polite"></div>
+
+    <section class="karta" id="wynik" hidden tabindex="-1" aria-labelledby="podpis-wartosci">
+      <p class="adres-wyniku" id="adres-wyniku"></p>
+      <p class="podpis-wartosci" id="podpis-wartosci">Szacowana wartość</p>
+      <p class="wartosc" id="wartosc"></p>
+      <p class="przedzial-tekst" id="przedzial-tekst"></p>
+      <div class="skala" id="skala"></div>
+      <p class="opis">Pasek to ceny podobnych mieszkań przeliczone na Twój metraż: cały mieści 8 na 10 sprzedaży, wyróżniony odcinek – środkową połowę.</p>
+      <p class="ostrzezenie" id="ostrzezenie" hidden>Pewność jest niska: w okolicy było mało podobnych sprzedaży albo ich ceny bardzo się różnią. Traktuj wynik jako orientacyjny.</p>
+      <dl class="fakty" id="fakty"></dl>
+
+      <h2>Sprzedaże w okolicy</h2>
+      <p class="opis" id="opis-mapy"></p>
+      <div class="mapa" id="mapa"></div>
+      <div class="legenda">
+        <span><i style="background:var(--tanio)"></i>tańsze niż przedział</span>
+        <span><i style="background:var(--pieczec)"></i>w przedziale</span>
+        <span><i style="background:var(--drogo)"></i>droższe niż przedział</span>
+      </div>
+
+      <h2>Jak zmieniały się ceny w okolicy</h2>
+      <p class="opis" id="opis-trendu"></p>
+      <div class="trend" id="trend"></div>
+
+      <h2>Najbardziej podobne sprzedaże</h2>
+      <p class="opis">Prawdziwe transakcje z aktów notarialnych, od najbardziej podobnej. „Dziś” to cena za m² przeliczona według zmian cen w okolicy.</p>
+      <ol class="porownania" id="porownania"></ol>
+
+      <ul class="uwagi" id="uwagi" hidden></ul>
+
+      <details>
+        <summary>Jak liczymy wycenę?</summary>
+        <p>Bierzemy sprzedaże mieszkań z aktów notarialnych z ostatnich 24 miesięcy w promieniu 1 km od adresu. Gdy podobnych jest za mało, szukamy w promieniu 2,5 km, a potem 6 km. Liczą się tylko sprzedaże wolnorynkowe całych mieszkań; nierealne ceny i ceny mocno odstające od okolicy (np. sprzedaż mieszkania komunalnego z bonifikatą) pomijamy.</p>
+        <p>Każdą cenę przeliczamy na dziś według zmian cen w okolicy (najwyżej o 15%) i dajemy jej wagę: tym większą, im sprzedaż bliżej, świeższa i podobniejsza metrażem, liczbą pokoi i piętrem. Wartość to ważona mediana ceny za m² pomnożona przez Twój metraż, a przedział obejmuje środkową połowę podobnych sprzedaży.</p>
+        <p>Pewność jest wysoka, gdy podobnych sprzedaży jest dużo, a ich ceny niewiele się różnią.</p>
+      </details>
+      <p class="zastrzezenie">To szacunek automatyczny, a nie operat szacunkowy rzeczoznawcy. Akty pokazują, za ile mieszkania naprawdę się sprzedały, ale nie znają stanu Twojego mieszkania, widoku ani remontu.</p>
+      <div class="akcje">
+        <button class="drugi" type="button" id="udostepnij">Udostępnij wynik</button>
+        <button class="drugi" type="button" id="nowa">Wyceń inne mieszkanie</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p id="zrodlo">Źródło cen: Rejestr Cen Nieruchomości, otwarte dane GUGiK z aktów notarialnych zbieranych przez starostwa.</p>
+    <p>Wyszukiwanie adresów: usługa UUG GUGiK, awaryjnie OpenStreetMap Nominatim (dane © autorzy <a href="https://www.openstreetmap.org/copyright" rel="noopener">OpenStreetMap</a>).</p>
+    <div class="instalacja" id="instalacja" hidden></div>
+  </footer>
+</div>
+
+<script src="wycena.js"></script>
+<script>
+"use strict";
+const $ = (id) => document.getElementById(id);
+const UUG = "https://services.gugik.gov.pl/uug/";
+const NOMINATIM = "https://nominatim.openstreetmap.org/search";
+const PEWNOSC = { high: "wysoka", medium: "średnia", low: "niska" };
+const RYNEK = { primary: "nowe", secondary: "używane", any: "nowe i używane" };
+const RZYMSKIE = ["I", "II", "III", "IV"];
+const SVG = "http://www.w3.org/2000/svg";
+
+const liczba = (v, c) => new Intl.NumberFormat("pl-PL", { minimumFractionDigits: c || 0, maximumFractionDigits: c || 0 }).format(v);
+const zl = (v) => (v === null || v === undefined) ? "–" : liczba(Math.round(v)) + "\u00a0zł";
+const tys = (v) => v >= 999500 ? liczba(v / 1e6, 2) + "\u00a0mln\u00a0zł" : liczba(Math.round(v / 1000)) + "\u00a0tys.\u00a0zł";
+const dataPl = (d) => d.slice(8, 10) + "." + d.slice(5, 7) + "." + d.slice(0, 4);
+const km = (m) => liczba(m / 1000, m % 1000 ? 1 : 0) + "\u00a0km";
+const esc = (t) => String(t === null || t === undefined ? "" : t).replace(/[&<>"']/g, (z) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[z]));
+function pokoje(n) {
+  if (n === 1) return "1 pokój";
+  const r = n % 10, s = n % 100;
+  return n + (r >= 2 && r <= 4 && (s < 10 || s >= 20) ? " pokoje" : " pokoi");
+}
+const pietroSlownie = (p) => p === null || p === undefined ? "" : p <= 0 ? "parter" : "piętro " + p;
+const ulicaBezPrzedrostka = (u) => (u || "").replace(/^(ulica|ul\.|aleja|al\.)\s+/i, "");
+
+let meta = null, ostatni = null;
+const pamiecKafli = new Map();
+
+// Typografia: Public Sans mocno dosuwa półpauzę do zwykłej spacji – twarde spacje dają równe odstępy (i półpauza
+// nie zaczyna wiersza); jednoliterowe spójniki i przyimki (w, z, i, a, o, u) nie zostają na końcu wiersza.
+const SIEROTKI = /(^|[\s\u00a0(„])([aiouwzAIOUWZ]) /g;
+const kreski = (t) => String(t || "").replace(/[ \u00a0]–[ \u00a0]/g, "\u00a0–\u00a0")
+  .replace(SIEROTKI, "$1$2\u00a0").replace(SIEROTKI, "$1$2\u00a0");   // dwa razy: "i w okolicy"
+function poprawKreski(korzen) {
+  const it = document.createTreeWalker(korzen, NodeFilter.SHOW_TEXT,
+    { acceptNode: (n) => n.parentNode.closest("script, style, svg") ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT });
+  for (let n = it.nextNode(); n; n = it.nextNode()) n.nodeValue = kreski(n.nodeValue);
+}
+
+function status(tekst, blad) {
+  const s = $("status");
+  s.textContent = kreski(tekst);
+  s.className = blad ? "blad" : "";
+}
+
+async function pobierzJson(url, opcje, ms) {
+  const ac = new AbortController();
+  const t = setTimeout(() => ac.abort(), ms || 15000);
+  try {
+    const odp = await fetch(url, Object.assign({ signal: ac.signal }, opcje || {}));
+    if (!odp.ok) throw new Error("HTTP " + odp.status);
+    return await odp.json();
+  } finally { clearTimeout(t); }
+}
+
+async function wczytajMeta() {
+  if (meta) return meta;
+  try { meta = await pobierzJson("dane/meta.json", { cache: "no-cache" }); }
+  catch (e) { throw new Error("Nie udało się pobrać danych o cenach. Sprawdź połączenie z internetem i spróbuj ponownie."); }
+  $("baza").textContent = "W bazie: " + liczba(meta.records) + " sprzedaży mieszkań z aktów notarialnych z ostatnich 3 lat.";
+  if (meta.newestDeed) $("zrodlo").textContent = "Źródło cen: Rejestr Cen Nieruchomości, otwarte dane GUGiK z aktów notarialnych zbieranych przez starostwa. Najnowszy akt w bazie: " + dataPl(meta.newestDeed) + ", dane odświeżone " + dataPl(meta.generatedAt.slice(0, 10)) + ".";
+  return meta;
+}
+
+async function pobierzKafel(nazwa) {
+  if (!meta.tiles || !meta.tiles[nazwa]) return [];
+  if (pamiecKafli.has(nazwa)) return pamiecKafli.get(nazwa);
+  let dane;
+  try { dane = await pobierzJson("dane/k/" + nazwa + ".json?v=" + encodeURIComponent(meta.generatedAt || ""), null, 30000); }
+  catch (e) { throw new Error("Nie udało się pobrać cen z okolicy. Sprawdź połączenie z internetem i spróbuj ponownie."); }
+  const akty = Wycena.rozpakujKafel(nazwa, dane);
+  pamiecKafli.set(nazwa, akty);
+  return akty;
+}
+
+// ---------------------------------------------------------------- adres (jak w agencie 8: GUGiK, numery obok, OpenStreetMap)
+
+const prosty = (t) => (t || "").toLowerCase().replace(/ł/g, "l").normalize("NFKD").replace(/[̀-ͯ]/g, "");
+
+async function uug(tekst) {
+  const d = await pobierzJson(UUG + "?request=GetAddress&address=" + encodeURIComponent(tekst));
+  const wyniki = Object.values((d && d.results) || {});
+  if (!wyniki.length) return null;
+  const typ = d.type || "city";
+  if (typ === "city" && wyniki.length > 1) {
+    const ocena = (w) => {
+      const t = w.teryt || "", naPrawach = t.length >= 4 && parseInt(t.slice(2, 4), 10) >= 61;
+      const m = (w.city || "").toLowerCase();
+      return (naPrawach ? 4 : 0) + (m && m === (w.commune || "").toLowerCase() ? 2 : 0) + (m && m === (w.county || "").toLowerCase() ? 1 : 0);
+    };
+    wyniki.sort((a, b) => ocena(b) - ocena(a));
+  } else {
+    wyniki.sort((a, b) => parseFloat(b.accuracy || 0) - parseFloat(a.accuracy || 0));
+  }
+  const w = wyniki[0];
+  if (typ !== "city" && parseFloat(w.accuracy || 0) < 0.55) return null;
+  const e = parseFloat(w.x), n = parseFloat(w.y);
+  if (!isFinite(e) || !isFinite(n)) return null;
+  const ulica = w.street ? ulicaBezPrzedrostka(w.street) + (w.number ? " " + w.number : "") : "";
+  return { n, e, typ, opis: [ulica, w.city].filter(Boolean).join(", ") };
+}
+
+async function nominatim(tekst) {
+  const d = await pobierzJson(NOMINATIM + "?format=jsonv2&countrycodes=pl&limit=1&addressdetails=1&accept-language=pl&q=" + encodeURIComponent(tekst));
+  if (!Array.isArray(d) || !d.length) return null;
+  const a = d[0].address || {};
+  const [n, e] = Wycena.doPuwg(parseFloat(d[0].lat), parseFloat(d[0].lon));
+  const typ = a.house_number ? "address" : (a.road ? "street" : "city");
+  const miasto = a.city || a.town || a.village || a.municipality || "";
+  const dzielnica = a.suburb || a.quarter || a.neighbourhood || "";
+  const ulica = a.road ? a.road + (a.house_number ? " " + a.house_number : "") : dzielnica;
+  return { n, e, typ, opis: [ulica, miasto].filter(Boolean).join(", ") };
+}
+
+async function znajdzAdres(miasto, ulicaWpisana) {
+  const ulica = ulicaWpisana
+    .replace(/\s+(m\.?|lok\.?|mieszk\.?|nr\s+mieszkania)\s*\d+\w*$/i, "")
+    .replace(/(^|\s)(ul\.?|ulica)\s+/gi, "$1").replace(/\s+/g, " ").trim();
+  let blad = null;
+  const sprobuj = async (f, t) => { try { return await f(t); } catch (e) { blad = blad || e; return null; } };
+  let miastoWynik = null;
+  if (ulica) {
+    const w = await sprobuj(uug, miasto + ", " + ulica);
+    if (w && w.typ !== "city") return w;
+    if (w) miastoWynik = w;
+    const m = ulica.match(/^(.*\S)\s+(\d{1,4})([a-zA-Z]?(\/\S+)?)$/);
+    if (m && !blad) {
+      // numeru nie ma w rejestrze (np. jest "100/102", a nie "100") - sprawdzamy numery obok
+      const nr = parseInt(m[2], 10), cel = prosty(m[1]);
+      const numery = (m[3] ? [String(nr)] : []).concat([nr + "/" + (nr + 2), (nr - 2) + "/" + nr, String(nr + 2), String(nr - 2), String(nr + 1), String(nr - 1)])
+        .filter((p) => !p.startsWith("0") && !p.startsWith("-"));
+      const wyniki = await Promise.all(numery.map((p) => sprobuj(uug, miasto + ", " + m[1] + " " + p)));
+      for (const w2 of wyniki) {
+        if (w2 && w2.typ === "address" && prosty(w2.opis).includes(cel)) {
+          return Object.assign(w2, { uwaga: "Numeru " + m[2] + m[3] + " nie ma w urzędowym rejestrze adresów, więc liczymy dla najbliższego: " + w2.opis + "." });
+        }
+      }
+    }
+    const osm = await sprobuj(nominatim, ulica + ", " + miasto);
+    if (osm && osm.typ === "address") return osm;
+    if (m) {
+      const s = await sprobuj(uug, miasto + ", " + m[1]);
+      if (s && s.typ !== "city") return Object.assign(s, { typ: "street" });
+    }
+    if (osm && osm.typ === "street") return osm;
+    if (osm && !miastoWynik) return Object.assign(osm, { typ: "city" });
+  }
+  const c = miastoWynik || await sprobuj(uug, miasto);
+  if (c) return Object.assign(c, { typ: "city" });
+  if (!ulica) {
+    const osm = await sprobuj(nominatim, miasto);
+    if (osm) return Object.assign(osm, { typ: "city" });
+  }
+  if (blad) throw new Error("Wyszukiwarka adresów nie odpowiada. Spróbuj za chwilę.");
+  return null;
+}
+
+// ---------------------------------------------------------------- rysunki (w skali 1:1 do szerokości ekranu)
+
+function el(nazwa, atrybuty, tekst) {
+  const e = document.createElementNS(SVG, nazwa);
+  for (const [k, v] of Object.entries(atrybuty || {})) e.setAttribute(k, v);
+  if (tekst !== undefined) e.textContent = tekst;
+  return e;
+}
+
+function rysujSkale(kontener, w, pow) {
+  const W = Math.max(260, kontener.clientWidth), H = 58, m = 10;
+  const lo = w.cenyM2.p10 * pow, hi = w.cenyM2.p90 * pow, v = w.wartosc;
+  const x = (val) => m + (W - 2 * m) * (val - lo) / Math.max(1, hi - lo);
+  const s = el("svg", { width: W, height: H, viewBox: `0 0 ${W} ${H}`, role: "img",
+    "aria-label": `Ceny podobnych mieszkań od ${tys(lo)} do ${tys(hi)}, szacowana wartość ${tys(v)}` });
+  s.append(el("line", { x1: m, y1: 18, x2: W - m, y2: 18, stroke: "var(--linia)", "stroke-width": 8, "stroke-linecap": "round" }));
+  s.append(el("line", { x1: x(w.przedzial[0]), y1: 18, x2: x(w.przedzial[1]), y2: 18, stroke: "var(--pieczec)", "stroke-opacity": .4, "stroke-width": 14, "stroke-linecap": "round" }));
+  s.append(el("line", { x1: x(v), y1: 4, x2: x(v), y2: 32, stroke: "var(--pieczec)", "stroke-width": 4, "stroke-linecap": "round" }));
+  const xv = Math.min(W - 44, Math.max(44, x(v)));
+  s.append(el("text", { x: xv, y: 52, "font-size": 14, "font-weight": 600, fill: "var(--tusz)", "text-anchor": "middle" }, tys(v)));
+  if (xv - m > 110) s.append(el("text", { x: m, y: 52, "font-size": 13, fill: "var(--szary)" }, tys(lo)));
+  if (W - m - xv > 110) s.append(el("text", { x: W - m, y: 52, "font-size": 13, fill: "var(--szary)", "text-anchor": "end" }, tys(hi)));
+  kontener.replaceChildren(s);
+}
+
+function rysujMape(kontener, w, miejsce, wszystkie) {
+  const S = Math.max(260, Math.min(560, kontener.clientWidth)), sr = S / 2, R = w.promien, k = (sr - 22) / R;
+  const poz = (n, e) => [sr + (e - miejsce.e) * k, sr - (n - miejsce.n) * k];
+  const krok = R <= 1000 ? 250 : R <= 2500 ? 500 : 1000;
+  const s = el("svg", { width: S, height: S, viewBox: `0 0 ${S} ${S}`, role: "img",
+    "aria-label": `Mapa sprzedaży mieszkań w promieniu ${km(R)} od adresu` });
+  for (let d = -Math.floor(R / krok) * krok; d <= R; d += krok) {
+    const p = sr + d * k;
+    s.append(el("line", { x1: p, y1: 0, x2: p, y2: S, stroke: "var(--siatka)", "stroke-width": 1 }));
+    s.append(el("line", { x1: 0, y1: p, x2: S, y2: p, stroke: "var(--siatka)", "stroke-width": 1 }));
+  }
+  s.append(el("circle", { cx: sr, cy: sr, r: R * k, fill: "none", stroke: "var(--pieczec)", "stroke-opacity": .5, "stroke-dasharray": "5 5", "stroke-width": 1.5 }));
+  const tlo = el("g", { fill: "var(--szary)", "fill-opacity": .3 });
+  for (const a of wszystkie) {
+    if (!a.wStat) continue;
+    const [x, y] = poz(a.n, a.e);
+    tlo.append(el("circle", { cx: x.toFixed(1), cy: y.toFixed(1), r: 2.2 }));
+  }
+  s.append(tlo);
+  const kolor = (m2) => m2 < w.cenyM2.p25 ? "var(--tanio)" : m2 > w.cenyM2.p75 ? "var(--drogo)" : "var(--pieczec)";
+  for (const a of w.porownania.slice().reverse()) {
+    const [x, y] = poz(a.dn, a.de);
+    const c = el("circle", { cx: x.toFixed(1), cy: y.toFixed(1), r: 7, fill: kolor(a.m2Dzis), "fill-opacity": .9, stroke: "var(--karta)", "stroke-width": 2 });
+    c.append(el("title", {}, `${ulicaBezPrzedrostka(a.ulica) || "bez nazwy ulicy"} ${a.nr || ""}: ${zl(a.cena)}, ${liczba(a.pow, 1)} m², ${dataPl(a.data)}`));
+    s.append(c);
+  }
+  const krzyz = el("g", { stroke: "var(--tusz)", "stroke-width": 2.5, "stroke-linecap": "round" });
+  krzyz.append(el("line", { x1: sr - 15, y1: sr, x2: sr - 6, y2: sr }), el("line", { x1: sr + 6, y1: sr, x2: sr + 15, y2: sr }),
+               el("line", { x1: sr, y1: sr - 15, x2: sr, y2: sr - 6 }), el("line", { x1: sr, y1: sr + 6, x2: sr, y2: sr + 15 }));
+  s.append(krzyz, el("circle", { cx: sr, cy: sr, r: 3, fill: "var(--tusz)" }));
+  s.append(el("text", { x: S - 14, y: 26, "text-anchor": "end", "font-size": 14, "font-weight": 700, fill: "var(--tusz)" }, "N"));
+  s.append(el("path", { d: `M${S - 19} 44 L${S - 14.5} 31 L${S - 10} 44 Z`, fill: "var(--tusz)" }));
+  s.append(el("line", { x1: 14, y1: S - 14, x2: 14 + krok * k, y2: S - 14, stroke: "var(--tusz)", "stroke-width": 2 }));
+  s.append(el("line", { x1: 14, y1: S - 19, x2: 14, y2: S - 9, stroke: "var(--tusz)", "stroke-width": 2 }));
+  s.append(el("line", { x1: 14 + krok * k, y1: S - 19, x2: 14 + krok * k, y2: S - 9, stroke: "var(--tusz)", "stroke-width": 2 }));
+  s.append(el("text", { x: 14, y: S - 24, "font-size": 13, fill: "var(--szary)" }, krok >= 1000 ? km(krok) : krok + " m"));
+  kontener.replaceChildren(s);
+}
+
+function rysujTrend(kontener, kwartaly) {
+  if (kwartaly.length < 2) { kontener.innerHTML = '<p class="opis">Za mało sprzedaży, żeby pokazać zmiany cen.</p>'; return; }
+  const W = Math.max(260, kontener.clientWidth), H = 210, gora = 24, dol = 40;
+  const maks = Math.max(...kwartaly.map((q) => q.mediana)) * 1.08;
+  const bw = W / kwartaly.length, waskie = bw < 34;
+  const s = el("svg", { width: W, height: H, viewBox: `0 0 ${W} ${H}`, role: "img",
+    "aria-label": "Mediana ceny za metr kwadratowy w kolejnych kwartałach: " + kwartaly.map((q) => `${RZYMSKIE[+q.kwartal.slice(-1) - 1]} kwartał ${q.kwartal.slice(0, 4)} – ${liczba(q.mediana)} zł`).join(", ") });
+  s.append(el("line", { x1: 0, y1: H - dol + .5, x2: W, y2: H - dol + .5, stroke: "var(--linia)" }));
+  kwartaly.forEach((q, i) => {
+    const h = (H - gora - dol) * q.mediana / maks, x = i * bw, y = H - dol - h, sr = x + bw / 2;
+    const nr = +q.kwartal.slice(-1), slaby = q.aktow < 15;
+    const r = el("rect", { x: (x + bw * .16).toFixed(1), y: y.toFixed(1), width: (bw * .68).toFixed(1), height: h.toFixed(1), rx: 3,
+                           fill: "var(--pieczec)", "fill-opacity": slaby ? .25 : .8 });
+    r.append(el("title", {}, `${RZYMSKIE[nr - 1]} kw. ${q.kwartal.slice(0, 4)}: ${liczba(q.mediana)} zł/m², ${q.aktow} sprzedaży`));
+    s.append(r);
+    if (!waskie || i % 2 === (kwartaly.length - 1) % 2)
+      s.append(el("text", { x: sr, y: y - 6, "font-size": 12, "text-anchor": "middle", fill: "var(--tusz)" }, liczba(q.mediana / 1000, 1)));
+    s.append(el("text", { x: sr, y: H - dol + 16, "font-size": 12, "text-anchor": "middle", fill: "var(--szary)" }, RZYMSKIE[nr - 1]));
+  });
+  // rok pod swoimi kwartałami (pomijamy, gdy rok ma za mało słupków, żeby zmieścić napis)
+  let start = 0;
+  for (let i = 1; i <= kwartaly.length; i++) {
+    if (i < kwartaly.length && kwartaly[i].kwartal.slice(0, 4) === kwartaly[start].kwartal.slice(0, 4)) continue;
+    const szer = (i - start) * bw;
+    if (szer >= 40) s.append(el("text", { x: (start * bw + i * bw) / 2, y: H - dol + 34, "font-size": 12, "text-anchor": "middle", fill: "var(--szary)" }, kwartaly[start].kwartal.slice(0, 4)));
+    if (start > 0) s.append(el("line", { x1: start * bw, y1: H - dol + 4, x2: start * bw, y2: H - dol + 38, stroke: "var(--linia)" }));
+    start = i;
+  }
+  kontener.replaceChildren(s);
+}
+
+function rysuj() {
+  if (!ostatni || $("wynik").hidden) return;
+  rysujSkale($("skala"), ostatni.w, ostatni.wej.pow);
+  rysujMape($("mapa"), ostatni.w, ostatni.miejsce, ostatni.wOkregu);
+  rysujTrend($("trend"), ostatni.kwartaly);
+}
+
+// ---------------------------------------------------------------- wynik
+
+function pokaz(w, miejsce, wOkregu, kwartaly, wej) {
+  ostatni = { w, miejsce, wOkregu, kwartaly, wej };
+  const pokojeTekst = wej.pokoje ? (wej.pokoje >= 5 ? "5 i więcej pokoi" : pokoje(wej.pokoje)) : null;
+  $("adres-wyniku").textContent = [miejsce.opis, liczba(wej.pow, wej.pow % 1 ? 1 : 0) + " m²", pokojeTekst,
+    wej.pietro !== "" ? pietroSlownie(Number(wej.pietro)) : null, wej.rynek === "any" ? null : RYNEK[wej.rynek]].filter(Boolean).join(", ");
+  $("wartosc").textContent = zl(w.wartosc);
+  $("przedzial-tekst").textContent = "Realny przedział: " + liczba(w.przedzial[0]) + " – " + zl(w.przedzial[1]);
+  $("ostrzezenie").hidden = w.pewnosc !== "low";
+  const fakty = [
+    ["Cena za m²", zl(w.cenaM2)],
+    ["Pewność wyceny", `<span class="pewnosc-${w.pewnosc}">${PEWNOSC[w.pewnosc]}</span>`],
+    ["Podobne sprzedaże", liczba(w.porownan)],
+    ["Promień", km(w.promien)],
+    ["Rodzaj mieszkań", RYNEK[w.rynekUzyty]],
+    ["Najnowszy akt", w.rynek.ostatniMiesiac ? Wycena.miesiacSlownie(w.rynek.ostatniMiesiac) : "–"],
+  ];
+  $("fakty").innerHTML = fakty.map(([a, b]) => `<div><dt>${a}</dt><dd>${b}</dd></div>`).join("");
+  $("opis-mapy").textContent = "Krzyżyk to Twój adres. Szare kropki to sprzedaże mieszkań z ostatnich 2 lat w promieniu " + km(w.promien) + ", kolorowe\u00a0– 10 najbardziej podobnych.";
+  $("opis-trendu").textContent = "Mediana ceny za m² (w tys. zł) ze wszystkich sprzedaży mieszkań w promieniu " + km(w.promien) + ", kwartał po kwartale. Bledsze słupki: mniej niż 15 sprzedaży, więc wynik jest mniej pewny.";
+  $("porownania").innerHTML = w.porownania.map((a) => {
+    const gdzie = a.ulica ? ulicaBezPrzedrostka(a.ulica) + (a.nr ? " " + a.nr : "") : "Adres bez nazwy ulicy";
+    const cechy = [liczba(a.pow, a.pow % 1 ? 1 : 0) + "\u00a0m²", a.izby ? Math.max(1, a.izby - 1) + "\u00a0pok." : null, pietroSlownie(a.pietro)].filter(Boolean).join(", ");
+    const odl = a.odl < 1000 ? liczba(a.odl) + "\u00a0m stąd" : km(Math.round(a.odl / 100) * 100) + " stąd";
+    const kiedy = [dataPl(a.data), w.rynekUzyty === "any" ? (a.rynek === "primary" ? "nowe" : "używane") : null, odl].filter(Boolean).join(", ");
+    const dzis = Math.abs(a.m2Dzis - a.m2) / a.m2 >= 0.005 ? "dziś " + liczba(a.m2Dzis) + "\u00a0zł/m²" : "";
+    return `<li><span class="gdzie">${esc(gdzie)}</span><span class="cena">${zl(a.cena)}</span>
+      <span class="lewa">${cechy}</span><span class="prawa">${liczba(a.m2)}\u00a0zł/m²</span>
+      <span class="lewa">${kiedy}</span><span class="prawa">${dzis}</span></li>`;
+  }).join("");
+  const uwagi = (miejsce.uwaga ? [miejsce.uwaga] : []).concat(w.uwagi || []);
+  $("uwagi").innerHTML = uwagi.map((u) => `<li>${esc(u)}</li>`).join("");
+  $("uwagi").hidden = !uwagi.length;
+  const sekcja = $("wynik");
+  poprawKreski(sekcja);
+  sekcja.hidden = false;
+  rysuj();
+  sekcja.classList.remove("pokaz"); void sekcja.offsetWidth; sekcja.classList.add("pokaz");
+  sekcja.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+  sekcja.focus({ preventScroll: true });
+}
+
+function daneFormularza() {
+  const f = new FormData($("formularz"));
+  return {
+    miasto: (f.get("miasto") || "").trim(), ulica: (f.get("ulica") || "").trim(),
+    pow: parseFloat(String(f.get("metraz") || "").replace(",", ".").replace(/[^\d.]/g, "")),
+    pokoje: f.get("pokoje") ? parseInt(f.get("pokoje"), 10) : null, pietro: f.get("pietro") || "", rynek: f.get("rynek") || "secondary",
+  };
+}
+
+async function wycenMieszkanie(ev) {
+  if (ev) ev.preventDefault();
+  const wej = daneFormularza();
+  for (const id of ["miasto", "metraz"]) $(id).removeAttribute("aria-invalid");
+  if (!wej.miasto) { status("Wpisz miejscowość.", true); $("miasto").setAttribute("aria-invalid", "true"); $("miasto").focus(); return; }
+  if (!(wej.pow >= 10 && wej.pow <= 400)) { status("Podaj powierzchnię mieszkania od 10 do 400 m².", true); $("metraz").setAttribute("aria-invalid", "true"); $("metraz").focus(); return; }
+  const przycisk = $("przycisk");
+  przycisk.disabled = true;
+  $("wynik").hidden = true;
+  try {
+    status("Szukam adresu…");
+    const [miejsce] = await Promise.all([znajdzAdres(wej.miasto, wej.ulica), wczytajMeta()]);
+    if (!miejsce) { status("Nie znaleźliśmy tego adresu. Sprawdź pisownię, na przykład: miejscowość „Kraków”, ulica „Długa 12”.", true); return; }
+    status("Pobieram akty notarialne z okolicy…");
+    const w = await Wycena.wycenaPelna(miejsce, wej, pobierzKafel, new Date());
+    if (w.blad) {
+      status("W promieniu 6 km nie ma podobnych sprzedaży z ostatnich 2 lat. Starostwo mogło jeszcze nie opublikować aktów albo metraż jest nietypowy.", true);
+      return;
+    }
+    const wszystkie = [];
+    for (const k of Wycena.kafleWPromieniu(miejsce.n, miejsce.e, w.promien)) for (const a of await pobierzKafel(k)) wszystkie.push(a);
+    const wOkregu = Wycena.aktyWOkregu(wszystkie, miejsce.n, miejsce.e, w.promien, w.okres[0], w.okres[1]);
+    const trzyLata = Wycena.aktyWOkregu(wszystkie, miejsce.n, miejsce.e, w.promien, meta.from || w.okres[0], w.okres[1]);
+    status("");
+    pokaz(w, miejsce, wOkregu, Wycena.rynekLokalny(trzyLata, 12).kwartaly, wej);
+    try { localStorage.setItem("wza-miasto", wej.miasto); } catch (e) { /* bez pamieci przegladarki */ }
+  } catch (e) {
+    const tekst = e && e.message && /^(Nie |Wyszukiwarka)/.test(e.message) ? e.message
+      : "Brak połączenia z internetem albo usługa nie odpowiada. Spróbuj ponownie.";
+    status(tekst, true);
+  } finally {
+    przycisk.disabled = false;
+  }
+}
+
+$("formularz").addEventListener("submit", wycenMieszkanie);
+
+$("nowa").addEventListener("click", () => {
+  $("wynik").hidden = true;
+  status("");
+  window.scrollTo({ top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  $("ulica").focus({ preventScroll: true });
+});
+
+function linkDoWyceny(wej) {
+  const u = new URL(location.href);
+  u.search = ""; u.hash = "";
+  const p = { miasto: wej.miasto, ulica: wej.ulica, m2: String(wej.pow).replace(".", ","), pokoje: wej.pokoje, pietro: wej.pietro, rynek: wej.rynek };
+  for (const [k, v] of Object.entries(p)) if (v !== null && v !== undefined && v !== "") u.searchParams.set(k, v);
+  return u.toString();
+}
+
+$("udostepnij").addEventListener("click", async () => {
+  if (!ostatni) return;
+  const { w, miejsce, wej } = ostatni;
+  const tekst = `Wycena z aktów notarialnych: ${miejsce.opis}, ${liczba(wej.pow, wej.pow % 1 ? 1 : 0)} m² – około ${zl(w.wartosc)} (realny przedział ${tys(w.przedzial[0])} – ${tys(w.przedzial[1])}).`;
+  const url = linkDoWyceny(wej);
+  try {
+    if (navigator.share) { await navigator.share({ title: "Wycena z aktów", text: tekst, url }); return; }
+    await navigator.clipboard.writeText(tekst + " " + url);
+    status("Skopiowaliśmy wynik z linkiem\u00a0– możesz go wkleić w wiadomości.");
+  } catch (e) {
+    if (e && e.name === "AbortError") return;
+    status("Skopiuj ten link, żeby wysłać wynik: " + url);
+  }
+});
+
+new ResizeObserver(() => rysuj()).observe($("wynik"));
+
+// ---------------------------------------------------------------- start: link z wynikiem, pamięć miejscowości, instalacja
+
+(function start() {
+  poprawKreski(document.body);
+  const p = new URLSearchParams(location.search);
+  if (p.get("miasto") && p.get("m2")) {
+    $("miasto").value = p.get("miasto");
+    $("ulica").value = p.get("ulica") || "";
+    $("metraz").value = p.get("m2");
+    if (p.get("pietro") !== null) $("pietro").value = p.get("pietro");
+    for (const [nazwa, wartosc] of [["pokoje", p.get("pokoje")], ["rynek", p.get("rynek")]]) {
+      const r = wartosc ? document.querySelector(`input[name=${nazwa}][value="${CSS.escape(wartosc)}"]`) : null;
+      if (r) r.checked = true;
+    }
+    wycenMieszkanie();
+  } else {
+    try { const m = localStorage.getItem("wza-miasto"); if (m) $("miasto").value = m; } catch (e) { /* bez pamieci */ }
+    wczytajMeta().catch(() => {});
+  }
+})();
+
+const zainstalowana = matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+const ios = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  const box = $("instalacja");
+  box.innerHTML = 'Dodaj Wycenę z aktów do ekranu głównego – otworzysz ją jak zwykłą aplikację.<br><button class="drugi" type="button" id="instaluj">Zainstaluj aplikację</button>';
+  poprawKreski(box);
+  box.hidden = false;
+  $("instaluj").addEventListener("click", async () => { e.prompt(); await e.userChoice; box.hidden = true; });
+});
+if (ios && !zainstalowana) {
+  const box = $("instalacja");
+  box.innerHTML = "Na iPhonie: stuknij <b>Udostępnij</b> na dole Safari, a potem <b>Do ekranu początkowego</b>. Wycena z aktów otworzy się jak zwykła aplikacja.";
+  box.hidden = false;
+}
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
+}
+</script>
+</body>
+</html>

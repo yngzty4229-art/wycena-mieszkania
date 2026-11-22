@@ -1,0 +1,21 @@
+{
+  "id": "./",
+  "name": "Wycena z aktów – ile jest warte Twoje mieszkanie",
+  "short_name": "Wycena z aktów",
+  "description": "Bezpłatna wycena mieszkania na podstawie prawdziwych cen z aktów notarialnych w okolicy (Rejestr Cen Nieruchomości).",
+  "lang": "pl",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f6f8",
+  "theme_color": "#3d35a0",
+  "categories": ["finance", "utilities"],
+  "icons": [
+    { "src": "ikony/ikona-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "ikony/ikona-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "ikony/ikona-maskowalna-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "ikony/ikona-maskowalna-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "ikony/ikona.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
